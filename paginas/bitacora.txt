@@ -1,0 +1,20 @@
+==================================================
+BITÁCORA DE PRUEBAS - PROYECTO RUEDA LIBRE
+==================================================
+
+1. Estructura de la URL Local:
+   - Protocolo: http://
+   - Host: 127.0.0.1[cite: 2]
+   - Puerto: 5500[cite: 2]
+   - Ruta principal: /index.html[cite: 2]
+
+2. Registro de Petición Exitosa (Código 200):
+   - Método y Ruta: GET /index.html[cite: 2]
+   - URL completa: http://127.0.0.1:5500/index.html[cite: 2]
+   - Estado: 200 OK (El documento HTML cargó correctamente)[cite: 2]
+
+3. Registro de Ruta Inexistente (Código 404):
+   - Método y Ruta: GET /favicon.ico (o ruta no encontrada)[cite: 2]
+   - URL completa: http://127.0.0.1:5500/favicon.ico[cite: 2]
+   - Estado: 404 Not Found (El servidor indica que el recurso no existe)[cite: 2]
+==================================================
