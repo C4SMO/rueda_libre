@@ -1,0 +1,280 @@
+¿Bitácora del proyecto: sitio web de Rueda Libre
+Proyecto: sitio web de tres páginas para Rueda Libre, negocio de alquiler de bicicletas y recorridos guiados en Medellín.
+Estudiante: [completar nombre]
+Programa: Riwi
+Fecha de elaboración: 25 de octubre de 2026
+Nota sobre la autoría de esta bitácora
+
+Esta bitácora fue redactada por Claude, un asistente de inteligencia artificial de Anthropic, a petición del estudiante. El estudiante aportó el código de las tres páginas, los datos del cliente, los registros de la pestaña de red y su explicación de los tres lenguajes. La redacción, las tablas, los análisis y las justificaciones fueron elaborados por Claude a partir de ese material.
+
+Las celdas marcadas con [completar] son resultados que solo se obtienen ejecutando el sitio en el navegador (pruebas de validación, recorrido con teclado, verificación en línea). Claude no puede ejecutarlos y no los inventó: el estudiante debe completarlos con lo que observe.
+
+1. Resumen del proyecto
+
+El sitio tiene tres páginas, organizadas así:
+
+proyecto/
+├ index.html
+├ paginas/
+│   ├ tarifas.html
+│   └ reservas.html
+└ img/
+    ├ rueda-libre-logo.svg
+    └ Logo_con_bicicleta_1x.png
+Página	Propósito
+index.html	Presentación del negocio, servicios, cómo alquilar y ubicación.
+paginas/tarifas.html	Tablas de tarifas de alquiler y de recorridos guiados, con la información adicional del cliente.
+paginas/reservas.html	Formulario de reserva con validación, correo de contacto y horario de atención.
+2. Registro de la pestaña de red (Live Server, Firefox)
+Primer registro: documento principal
+Dato	Valor
+URL	http://127.0.0.1:5500/index.html
+Protocolo	http
+Host	127.0.0.1 (la propia máquina)
+Puerto	5500 (el de Live Server por defecto)
+Ruta	/index.html
+Método	GET (en todas las peticiones)
+Petición	Código	Explicación
+index.html	200	El servidor encontró el archivo y lo entregó.
+favicon.ico	404	El navegador pide el ícono de la pestaña por su cuenta y el sitio no tiene uno.
+ws	101	Cambio de protocolo a WebSocket, que Live Server usa para recargar la página al guardar.
+Intento de acceder a una ruta inexistente
+
+Se probó http://127.0.0.1:5500/index.html/promociones.html. Resultado: 404. La dirección trata a index.html como si fuera una carpeta que contiene promociones.html, y no lo es. En esa prueba, la petición de favicon.ico apareció con un signo de prohibido en la lista de red; falta confirmar su causa pasando el cursor sobre la fila. [completar]
+
+Rol de cada lenguaje (según el estudiante)
+HTML: desarrolla la estructura de la página. Además, da significado a cada parte (título, menú, tabla), como se aplicó con las etiquetas semánticas.
+CSS: se encarga de la presentación (colores, tipografía, espacios y distribución).
+JavaScript: es el comportamiento: reacciona a lo que hace la persona y cambia la página sin recargarla.
+3. Estructura semántica
+Esquema de regiones por página
+
+index.html
+
+body
+├ header
+│   ├ nav (menú)
+│   ├ h1 Rueda Libre
+│   └ imagen del logo
+├ main
+│   ├ p de bienvenida (con enlace interno a #encuentranos)
+│   ├ section ¿Quiénes somos?
+│   ├ section Nuestros servicios
+│   │   ├ article Alquiler de bicicletas
+│   │   ├ article Recorridos guiados
+│   │   └ article Taller básico
+│   ├ section ¿Cómo alquilar? (lista ordenada, enlace "Reservar ahora", Beneficios)
+│   └ section Encuéntranos (id="encuentranos")
+└ footer
+
+paginas/tarifas.html
+
+body
+├ header (nav, logo)
+├ main
+│   ├ h1 Tarifas y recorridos
+│   ├ section Tarifas de alquiler (id="alquiler")
+│   ├ section Recorridos guiados (id="recorridos")
+│   └ section Información adicional
+│       └ aside Qué llevar
+└ footer
+
+paginas/reservas.html
+
+body
+├ header (nav, logo)
+├ main
+│   ├ h1 Reserva tu bicicleta
+│   ├ section Formulario de reserva (id="formulario-reserva")
+│   ├ section Contacto (id="contacto")
+│   └ aside Horario de atención (lista de definiciones)
+└ footer
+Decisiones
+Cada servicio de la página de inicio es un <article> porque tiene sentido por sí solo; cada bloque temático es una <section> con su encabezado.
+"Qué llevar" y el horario de atención son <aside> porque complementan la página pero no son esenciales para entenderla.
+Cada página tiene un solo <main>, y el <footer> queda fuera de él.
+<div> y <span>: no se usó ninguno, porque en todos los casos existía una etiqueta con significado.
+Jerarquía de encabezados: un h1 por página, h2 para las secciones y h3 para los servicios y subapartados. Una versión inicial usaba h4 a h6 y saltaba niveles; se corrigió.
+4. Tabla de rutas
+
+Las rutas son relativas y se escriben desde la carpeta del archivo que contiene el enlace.
+
+Archivo de origen	Destino	Ruta escrita
+index.html	Inicio	index.html
+index.html	Tarifas	paginas/tarifas.html
+index.html	Reservas	paginas/reservas.html
+paginas/tarifas.html	Inicio	../index.html
+paginas/tarifas.html	Tarifas	tarifas.html
+paginas/tarifas.html	Reservas	reservas.html
+paginas/reservas.html	Inicio	../index.html
+paginas/reservas.html	Tarifas	tarifas.html
+paginas/reservas.html	Reservas	reservas.html
+index.html	Tabla de recorridos (otra página, con fragmento)	paginas/tarifas.html#recorridos
+index.html	Sección Encuéntranos (misma página)	#encuentranos
+index.html	Logo	img/rueda-libre-logo.svg
+paginas/tarifas.html	Logo	../img/rueda-libre-logo.svg
+paginas/reservas.html	Logo	../img/rueda-libre-logo.svg
+
+Regla aplicada: desde la raíz se entra a una carpeta con su nombre (paginas/); desde paginas/ se sube un nivel con ../. No se usan rutas que empiecen con /, porque al publicar el sitio en GitHub Pages vive bajo /nombre-del-repositorio/ y esas rutas apuntarían al lugar equivocado.
+
+Recorrido del sitio solo con el menú (nueve combinaciones) y comprobación de errores 404 en la pestaña de red: [completar].
+
+5. Página de tarifas
+Dos tablas accesibles con <caption>, <thead>, <tbody>, <th scope="col"> para los encabezados de columna y <th scope="row"> para el nombre de cada fila.
+Los datos se tomaron de lo enviado por el cliente. Una versión inicial tenía un error: la bicicleta de montaña a medio día aparecía en $30.000 y el valor correcto es $45.000. También se corrigieron "25 km" (sobraba un $) y las tildes.
+La sección de recorridos tiene id="recorridos" para enlazarla directamente desde la página de inicio.
+6. Formulario de reserva
+
+El formulario usa method="post" y tiene tres grupos con <fieldset> y <legend>: "Tus datos", "Tu alquiler" y "Confirmación". Los radio del tipo de bicicleta tienen su propio <fieldset> anidado dentro de "Tu alquiler". Cada control tiene su <label for> conectado con su id y un name para el envío.
+
+Justificación de tres elecciones
+Documento como type="text" y no number. Un documento no es una cantidad: no se suma ni se resta, puede empezar con ceros y no debe tener las flechas para subir o bajar. Además, type="number" admite decimales, signos y la letra e, y no permite usar pattern. Con text y un patrón se exige exactamente el formato del cliente.
+Tipo de bicicleta con botones de opción (radio) y plan y recorrido con listas desplegables (select). El tipo de bicicleta tiene solo tres opciones y conviene ver todas a la vez. El recorrido tiene cuatro opciones y el plan tres, y una lista desplegable ocupa menos espacio y es más práctica cuando las opciones son más numerosas.
+Aceptación de políticas con casilla (checkbox). Es una decisión de sí o no, y con required obliga a aceptar para poder enviar.
+7. Validación del formulario
+Reglas del cliente traducidas a atributos
+Campo	Regla del cliente	Atributos usados
+Nombre completo	Obligatorio, mínimo 3 caracteres	required, minlength="3"
+Documento	Obligatorio, solo números, 6 a 10 dígitos	type="text", required, pattern="[0-9]{6,10}", title, minlength="6", maxlength="10", inputmode="numeric"
+Correo	Obligatorio, formato válido	type="email", required
+Celular	Obligatorio, 10 dígitos, empieza por 3	type="tel", required, pattern="3[0-9]{9}", title con ejemplo, minlength="10", maxlength="10", inputmode="numeric"
+Fecha del alquiler	Obligatoria, del 1 de noviembre al 31 de diciembre de 2026	type="date", required, min="2026-11-01", max="2026-12-31"
+Tipo de bicicleta	Obligatorio	required en el primer radio del grupo
+Plan	Obligatorio	required en el select, con primera opción vacía
+Cantidad	Obligatoria, de 1 a 6	type="number", required, min="1", max="6", step="1"
+Comentarios	Opcional, máximo 300 caracteres	maxlength="300", sin required
+Políticas	Obligatorio aceptarlas	type="checkbox", required
+Recorrido guiado	(sin regla de obligatoriedad)	select sin required; "Ninguno" es una opción válida
+Patrones
+Documento: [0-9]{6,10} significa "entre 6 y 10 dígitos". El navegador exige que coincida todo el texto.
+Celular: 3[0-9]{9} significa "un 3 seguido de exactamente 9 dígitos", o sea 10 en total.
+Cada patrón lleva un title que explica el formato esperado.
+Tabla de pruebas
+
+La columna "Resultado esperado" sale del análisis de las reglas. La columna "Resultado obtenido" se completa al probar en el navegador, y si no coincide con lo esperado, se anota por qué.
+
+#	Campo	Dato de prueba	Resultado esperado	Resultado obtenido
+1	Nombre	Al	Rechaza: mínimo 3 caracteres	[completar]
+2	Documento	12345 (5 dígitos)	Rechaza: formato	[completar]
+3	Documento	12345678a	Rechaza: solo números	[completar]
+4	Documento	12345678901 (11 dígitos)	No deja escribir el dígito 11 (maxlength)	[completar]
+5	Celular	3001234567	Acepta	[completar]
+6	Celular	1234567890	Rechaza: no empieza por 3	[completar]
+7	Celular	300123	Rechaza: faltan dígitos	[completar]
+8	Correo	correo-sin-arroba	Rechaza: formato de correo	[completar]
+9	Fecha	31/10/2026	Rechaza: anterior al mínimo	[completar]
+10	Fecha	01/01/2027	Rechaza: posterior al máximo	[completar]
+11	Fecha	01/11/2026	Acepta: límite inferior del rango	[completar]
+12	Cantidad	0	Rechaza: mínimo 1	[completar]
+13	Cantidad	7	Rechaza: máximo 6	[completar]
+14	Comentarios	Texto de más de 300 caracteres	No deja escribir más de 300 (maxlength)	[completar]
+15	Políticas	Casilla sin marcar	Rechaza: obligatorio	[completar]
+16	Tipo de bicicleta	Ninguna opción elegida	Rechaza: obligatorio	[completar]
+Observaciones sobre la validación nativa
+Con maxlength, el navegador no muestra error al escribir de más: simplemente impide escribir. Por eso en esas pruebas se anota lo que se observa.
+minlength en documento y celular es redundante, porque el patrón ya controla la longitud.
+Tres espacios en el nombre cuentan como tres caracteres y pasan minlength, y type="email" acepta direcciones muy simples como a@b.
+La validación nativa se puede saltar desde las herramientas de desarrollo, así que en un sitio real el servidor también debe validar.
+El action apunta a procesar-reserva.php, que no existe. Con datos válidos el envío falla con un 404, lo cual es esperado en esta etapa. Con datos inválidos no debe salir ninguna petición POST en la pestaña de red: [completar].
+8. Accesibilidad y contraste
+Verificación de contraste de la paleta
+
+Criterios (WCAG 2.x, nivel AA): texto normal, 4,5:1 o más; texto grande (24 px o más, o 18,66 px o más en negrita), 3:1 o más; componentes de interfaz y elementos gráficos, 3:1 o más.
+
+Herramienta de verificación: [completar: WebAIM Contrast Checker / DevTools].
+
+Texto sobre fondo	Colores	Relación	Clasificación
+Blanco sobre Verde Ruta	
+#FFFFFF / 
+#1E7A4F	5,31:1	Apta para texto normal
+Blanco sobre Naranja Pedal	
+#FFFFFF / 
+#F39A2B	2,22:1	No apta
+Azul Noche sobre Naranja Pedal	
+#14213D / 
+#F39A2B	7,20:1	Apta para texto normal
+Azul Noche sobre Crema	
+#14213D / 
+#FAF6EF	14,83:1	Apta para texto normal
+Gris Asfalto sobre Crema	
+#5B6470 / 
+#FAF6EF	5,57:1	Apta para texto normal
+Verde Ruta sobre Crema	
+#1E7A4F / 
+#FAF6EF	4,93:1	Apta para texto normal
+Naranja Pedal sobre Crema	
+#F39A2B / 
+#FAF6EF	2,06:1	No apta
+Blanco sobre Azul Noche	
+#FFFFFF / 
+#14213D	15,97:1	Apta para texto normal
+Ninguna combinación queda entre 3:1 y 4,5:1, así que ninguna es "apta solo para texto grande". Las dos que fallan están por debajo de 3:1 y no sirven ni para texto grande.
+Verde Ruta sobre Crema (4,93:1) pasa con poco margen, por lo que los enlaces no deben depender solo del color.
+Naranja Pedal sobre Crema (2,06:1) tampoco alcanza 3:1 como elemento gráfico. Un botón naranja sobre fondo crema necesita un borde de otro color.
+Mapa de uso de color
+Elemento	Color del texto	Color de fondo	Relación
+Fondo general	(no aplica)	Crema	(no aplica)
+Texto principal	Azul Noche	Crema	14,83:1
+Títulos	Azul Noche	Crema	14,83:1
+Texto secundario	Gris Asfalto	Crema	5,57:1
+Enlaces	Verde Ruta, con subrayado	Crema	4,93:1
+Botones principales	Blanco	Verde Ruta	5,31:1
+Botones secundarios y destacados	Azul Noche	Naranja Pedal	7,20:1
+Encabezado con fondo oscuro (si se usa)	Blanco	Azul Noche	15,97:1
+
+Reglas de uso:
+
+Naranja Pedal solo se usa como fondo o acento, nunca como color de texto sobre blanco ni sobre crema.
+Los botones secundarios llevan un borde Azul Noche (14,83:1 contra Crema).
+Los enlaces se distinguen por el subrayado además del color.
+Todos los elementos interactivos muestran un indicador de foco visible, con un color que alcance al menos 3:1 contra su fondo.
+Hallazgos de accesibilidad
+
+Hallazgos a partir de la revisión del código de las tres páginas.
+
+Página	Elemento	Hallazgo	Acción
+Las tres	Idioma	Las tres declaran lang="es" en <html>.	Cumple. Sin cambios.
+Las tres	Jerarquía de encabezados	Un solo h1 por página, seguido de h2 y h3 sin saltos de nivel.	Cumple. Una versión inicial usaba h4 a h6; se corrigió antes de la auditoría.
+index, tarifas, reservas	Texto alternativo del logo	La misma imagen tiene tres textos distintos. En index.html dice solo "llanta de una bicicleta", sin el nombre ni el lema que muestra el logo.	Unificar en las tres páginas: "Logo de Rueda Libre: rueda de bicicleta con líneas de velocidad y el lema Alquiler de bicicletas, Medellín".
+index	Texto alternativo de la imagen de la bicicleta	Describe lo que se ve (bicicleta frente a montañas).	Cumple. Sin cambios.
+index	Enlace "Nuestro local"	Lleva al mapa general de Google, no a la ubicación del negocio.	Reemplazar por el enlace a la ubicación real.
+index, tarifas	Enlaces "Reservar ahora" y "Reservas"	Mismo destino con textos distintos, ambos claros fuera de contexto.	Cumple. Sin cambios.
+index	Enlaces "Mira dónde estamos" y "Mira los recorridos y sus precios"	Se entienden fuera de contexto.	Cumple. Sin cambios.
+tarifas	Tablas	Cada tabla tiene <caption> y <th> con scope.	Cumple. Sin cambios.
+reservas	Formulario	Cada control tiene su <label for>, los radio están agrupados con <fieldset> y <legend>, y el campo opcional está marcado como tal.	Cumple. Sin cambios.
+reservas	Menú	Solo esta página tiene aria-label en el <nav>.	Unificar el criterio en las tres páginas.
+Recorrido con teclado
+
+Teclas usadas: Tab y Shift + Tab para avanzar y retroceder, flechas en los radio y las listas, barra espaciadora en la casilla y Enter para enviar.
+
+Página	Qué se recorrió	Resultado observado	Corrección
+index	Menú, enlaces del contenido, pie	[completar]	[completar]
+tarifas	Menú, enlace "Reservar ahora", pie	[completar]	[completar]
+reservas	Menú, los tres grupos del formulario, botón de envío, pie	[completar]	[completar]
+9. Publicación en GitHub Pages
+Configuración: Settings, Pages, Source "Deploy from a branch", rama principal y carpeta / (root).
+Enlace del sitio publicado: [completar]
+Fecha de publicación: [completar]
+Comprobación en línea	Resultado
+index.html carga	[completar]
+paginas/tarifas.html carga	[completar]
+paginas/reservas.html carga	[completar]
+Imágenes visibles en las tres páginas	[completar]
+Menú y enlaces sin 404 en la pestaña de red	[completar]
+Diferencias entre local y en línea (mayúsculas y minúsculas en los nombres de archivo)	[completar]
+10. Control de versiones
+Versión	Contenido	Mensaje de commit
+v0.1	Sitio de tres páginas con menú, pie de página y reservas	[completar]
+Estructura semántica	Etiquetas semánticas en las tres páginas	[completar]
+Formulario	Formulario de reserva	[completar]
+Validación	Reglas de validación nativa	[completar]
+Accesibilidad	Auditoría y correcciones	[completar]
+11. Pendientes por completar
+Nombre del estudiante en el encabezado.
+Resultado obtenido de las 16 pruebas de validación.
+Recorrido con teclado de las tres páginas.
+Recorrido del sitio con el menú y verificación en la pestaña de red.
+Verificador de contraste usado y comprobación de las ocho combinaciones.
+Aplicar las acciones pendientes de la tabla de hallazgos (logo y enlace "Nuestro local").
+Enlace del sitio publicado y verificación en línea.
+Mensajes de commit de cada versión.

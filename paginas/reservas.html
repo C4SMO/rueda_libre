@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reserva bicicletas y recorridos guiados con Rueda Libre en Medellín.">
+    <title>Reservas | Rueda Libre</title>
+</head>
+
+<body>
+    <header>
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="tarifas.html">Tarifas y rutas</a></li>
+                <li><a href="reservas.html">Reservas</a></li>
+            </ul>
+        </nav>
+
+        <img
+            src="../img/rueda-libre-logo.svg"
+            alt="Rueda Libre: rueda de bicicleta con líneas de velocidad y el lema Alquiler de bicicletas · Medellín"
+            width="440"
+            height="138"
+        >
+    </header>
+
+    <main>
+        <h1>Reserva tu bicicleta</h1>
+
+        <section id="formulario-reserva">
+            <h2>Formulario de reserva</h2>
+
+            <p>
+                Completa tus datos para solicitar el alquiler de una
+                bicicleta o reservar un recorrido guiado.
+            </p>
+
+            <form action="procesar-reserva.php" method="post">
+                <fieldset>
+                    <legend>Tus datos</legend>
+
+                    <p>
+                        <label for="nombre">Nombre completo:</label>
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            minlength="3"
+                            required
+                            autocomplete="name"
+                        >
+                    </p>
+
+                    <p>
+                        <label for="documento">Número de documento:</label>
+                        <input
+                            type="text"
+                            id="documento"
+                            name="documento"
+                            inputmode="numeric"
+                            pattern="[0-9]{6,10}"
+                            title="Ingresa únicamente números, entre 6 y 10 dígitos."
+                            minlength="6"
+                            maxlength="10"
+                            required
+                            autocomplete="off"
+                        >
+                    </p>
+
+                    <p>
+                        <label for="correo">Correo electrónico:</label>
+                        <input
+                            type="email"
+                            id="correo"
+                            name="correo"
+                            required
+                            autocomplete="email"
+                        >
+                    </p>
+
+                    <p>
+                        <label for="celular">Número de celular:</label>
+                        <input
+                            type="tel"
+                            id="celular"
+                            name="celular"
+                            inputmode="numeric"
+                            pattern="3[0-9]{9}"
+                            title="Ingresa exactamente 10 dígitos y comienza por 3. Ejemplo: 3001234567."
+                            minlength="10"
+                            maxlength="10"
+                            required
+                            autocomplete="tel"
+                        >
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Tu alquiler</legend>
+
+                    <p>
+                        <label for="fecha">Fecha del alquiler:</label>
+                        <input
+                            type="date"
+                            id="fecha"
+                            name="fecha"
+                            min="2026-11-01"
+                            max="2026-12-31"
+                            required
+                        >
+                    </p>
+
+                    <fieldset>
+                        <legend>Tipo de bicicleta</legend>
+
+                        <p>
+                            <input
+                                type="radio"
+                                id="urbana"
+                                name="tipo_bicicleta"
+                                value="urbana"
+                                required
+                            >
+                            <label for="urbana">Urbana</label>
+                        </p>
+
+                        <p>
+                            <input
+                                type="radio"
+                                id="montana"
+                                name="tipo_bicicleta"
+                                value="montana"
+                            >
+                            <label for="montana">Montaña</label>
+                        </p>
+
+                        <p>
+                            <input
+                                type="radio"
+                                id="electrica"
+                                name="tipo_bicicleta"
+                                value="electrica"
+                            >
+                            <label for="electrica">Eléctrica</label>
+                        </p>
+                    </fieldset>
+
+                    <p>
+                        <label for="plan">Plan de alquiler:</label>
+                        <select id="plan" name="plan" required>
+                            <option value="">Selecciona un plan</option>
+                            <option value="1_hora">1 hora</option>
+                            <option value="medio_dia">Medio día (4 horas)</option>
+                            <option value="dia_completo">Día completo</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="cantidad">Cantidad de bicicletas:</label>
+                        <input
+                            type="number"
+                            id="cantidad"
+                            name="cantidad"
+                            min="1"
+                            max="6"
+                            step="1"
+                            value="1"
+                            required
+                        >
+                    </p>
+
+                    <p>
+                        <label for="recorrido">Recorrido guiado:</label>
+                        <select id="recorrido" name="recorrido">
+                            <option value="ninguno">Ninguno</option>
+                            <option value="rio_parques">Río y Parques</option>
+                            <option value="sabores_barrio">Sabores de Barrio</option>
+                            <option value="reto_palmas">Reto Las Palmas</option>
+                        </select>
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Confirmación</legend>
+
+                    <p>
+                        <label for="comentarios">
+                            Comentarios o solicitudes especiales (opcional):
+                        </label>
+                        <textarea
+                            id="comentarios"
+                            name="comentarios"
+                            rows="5"
+                            cols="40"
+                            maxlength="300"
+                            title="Puedes escribir hasta 300 caracteres."
+                        ></textarea>
+                    </p>
+
+                    <p>
+                        <input
+                            type="checkbox"
+                            id="politicas"
+                            name="acepta_politicas"
+                            value="si"
+                            required
+                        >
+                        <label for="politicas">
+                            Acepto las políticas de alquiler de Rueda Libre.
+                        </label>
+                    </p>
+                </fieldset>
+
+                <p>
+                    <button
+                        type="submit"
+                        name="enviar_reserva"
+                        value="enviar"
+                    >
+                        Enviar reserva
+                    </button>
+                </p>
+            </form>
+        </section>
+
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <p>
+                ¿Tienes dudas sobre tu reserva?
+                Escríbenos a
+                <a href="mailto:C4SMO@proton.me">C4SMO@proton.me</a>.
+            </p>
+        </section>
+
+        <aside>
+            <h2>Horario de atención</h2>
+            <dl>
+                <dt>Lunes a viernes</dt>
+                <dd>De 7:00 a. m. a 7:00 p. m.</dd>
+
+                <dt>Sábados, domingos y festivos</dt>
+                <dd>De 6:00 a. m. a 2:00 p. m.</dd>
+            </dl>
+        </aside>
+    </main>
+
+    <footer>
+        <p>
+            &copy; 2026 Rueda Libre ·
+            <a href="mailto:C4SMO@proton.me">C4SMO@proton.me</a>
+        </p>
+    </footer>
+</body>
+</html>
