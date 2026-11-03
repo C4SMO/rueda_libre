@@ -278,3 +278,7 @@ Verificador de contraste usado y comprobación de las ocho combinaciones.
 Aplicar las acciones pendientes de la tabla de hallazgos (logo y enlace "Nuestro local").
 Enlace del sitio publicado y verificación en línea.
 Mensajes de commit de cada versión.
+
+
+El cambio del estrechamiento hace que el texto se salga de las cuadriculas.
+En general se ve extraño aun no logro solucionar el problema de lo bordes de las cuadriculas ya veré que puedo hacer 

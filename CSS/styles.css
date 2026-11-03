@@ -1,0 +1,162 @@
+
+/* ========================================
+   IDENTIDAD VISUAL DE RUEDA LIBRE
+======================================== */
+
+:root {
+    --crema: #FFF8ED;
+    --verde-oscuro: #14251D;
+    --naranja: #E6501B;
+    --naranja-claro: #F86638;
+    --verde-menta: #8CCBAA;
+    --verde-suave: #D4E6C8;
+}
+
+
+/* ========================================
+   ESTILOS GENERALES
+======================================== */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--crema);
+    color: var(--verde-oscuro);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    color: var(--verde-oscuro);
+}
+
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+header {
+    background-color: var(--crema);
+    color: var(--verde-oscuro);
+    padding: 24px 40px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+/* Identidad del negocio */
+
+.identidad {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.identidad img {
+    width: 70px;
+}
+
+.identidad h1 {
+    margin: 0;
+}
+
+
+/* ========================================
+   NAVEGACIÓN
+======================================== */
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap
+    ;
+}
+
+nav a {
+    color: var(--verde-oscuro);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--naranja);
+}
+
+
+/* ========================================
+   CONTENIDO PRINCIPAL
+======================================== */
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+section {
+    border: 5px solid var(--verde-oscuro);
+    background-color: var(--crema);
+    padding: 24px;
+    margin-bottom: 24px;
+    border-radius: 12px;
+}
+
+
+/* ========================================
+   ENLACES
+======================================== */
+
+a {
+    color: var(--naranja);
+}
+
+a:hover {
+    color: var(--verde-oscuro);
+}
+
+
+/* ========================================
+   IMÁGENES ADAPTABLES
+======================================== */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ========================================
+   PIE DE PÁGINA
+======================================== */
+
+footer {
+    background-color: var(--verde-oscuro);
+    color: var(--crema);
+    padding: 24px 40px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+footer h3 {
+    color: var(--verde-menta);
+    margin-top: 0;
+}
+
+footer a {
+    color: var(--verde-menta);
+}
