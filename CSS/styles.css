@@ -17,6 +17,10 @@
    ESTILOS GENERALES
 ======================================== */
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -29,9 +33,14 @@ h1, h2, h3 {
     color: var(--verde-oscuro);
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 
 /* ========================================
-   ENCABEZADO
+   ENCABEZADO - FLEXBOX
 ======================================== */
 
 header {
@@ -56,7 +65,7 @@ header {
 }
 
 .identidad img {
-    width: 70px;
+    width: 200px;
 }
 
 .identidad h1 {
@@ -65,7 +74,7 @@ header {
 
 
 /* ========================================
-   NAVEGACIÓN
+   NAVEGACIÓN - FLEXBOX
 ======================================== */
 
 nav ul {
@@ -78,8 +87,7 @@ nav ul {
     justify-content: space-between;
     align-items: center;
     gap: 24px;
-    flex-wrap: wrap
-    ;
+    flex-wrap: wrap;
 }
 
 nav a {
@@ -104,11 +112,123 @@ main {
 }
 
 section {
-    border: 5px solid var(--verde-oscuro);
+    border: 4px solid var(--verde-oscuro);
     background-color: var(--crema);
     padding: 24px;
     margin-bottom: 24px;
     border-radius: 12px;
+}
+
+
+/* ========================================
+   PORTADA - GRID
+======================================== */
+
+.portada {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 30px;
+}
+
+.portada-imagen img {
+    width: 100%;
+    display: block;
+}
+
+
+/* ========================================
+   NUESTRA FLOTA - GRID
+======================================== */
+
+.nuestra-flota {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+
+/* ========================================
+   TARJETAS DE BICICLETAS - FLEXBOX
+======================================== */
+
+.bicicleta {
+    display: flex;
+    flex-direction: column;
+
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.bicicleta img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+}
+
+.bicicleta a {
+    margin-top: auto;
+}
+
+.precio {
+    color: var(--naranja);
+    font-weight: bold;
+}
+
+
+/* ========================================
+   GALERÍA NUESTRAS RUTAS - GRID
+======================================== */
+
+.galeria-rutas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.ruta {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.ruta img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+
+/* ========================================
+   RESERVAS - GRID 2:1
+======================================== */
+
+.contenido-reservas {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.informacion-contacto {
+    background-color: var(--verde-suave);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+
+/* ========================================
+   FORMULARIO - GRID
+======================================== */
+
+.campos-cortos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.campos-cortos input {
+    width: 100%;
 }
 
 
@@ -126,17 +246,7 @@ a:hover {
 
 
 /* ========================================
-   IMÁGENES ADAPTABLES
-======================================== */
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-
-/* ========================================
-   PIE DE PÁGINA
+   PIE DE PÁGINA - FLEXBOX
 ======================================== */
 
 footer {

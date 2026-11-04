@@ -282,3 +282,5 @@ Mensajes de commit de cada versión.
 
 El cambio del estrechamiento hace que el texto se salga de las cuadriculas.
 En general se ve extraño aun no logro solucionar el problema de lo bordes de las cuadriculas ya veré que puedo hacer 
+
+Cuando se hizo el cambio entre los 1280px el numero de columnas 3, en 900px 2 y en 500px 1 
