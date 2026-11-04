@@ -284,3 +284,19 @@ El cambio del estrechamiento hace que el texto se salga de las cuadriculas.
 En general se ve extraño aun no logro solucionar el problema de lo bordes de las cuadriculas ya veré que puedo hacer 
 
 Cuando se hizo el cambio entre los 1280px el numero de columnas 3, en 900px 2 y en 500px 1 
+
+
+v2
+tiempo registrado: 45 minutos
+
+en el scc se usa .nuestra-flota {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+mientras que en el html se usa: <div class="row g-3">
+
+  <article class="col-12 col-sm-6 col-lg-4 col-xl-3">
+
+la necesidad de trabajar con el archivo scc para definir el contenedor y sus cuadriculas pero pierdo mas la personalización.
