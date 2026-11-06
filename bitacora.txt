@@ -300,3 +300,22 @@ mientras que en el html se usa: <div class="row g-3">
   <article class="col-12 col-sm-6 col-lg-4 col-xl-3">
 
 la necesidad de trabajar con el archivo scc para definir el contenedor y sus cuadriculas pero pierdo mas la personalización.
+
+
+nocturna
+Durante la actividad de Bootstrap trabajé en el catálogo de bicicletas de Rueda Libre. Incorporé Bootstrap 5.3.8 mediante su CDN y utilicé clases como container, row, g-3, col-12, col-sm-6, col-lg-4 y col-xl-3 para organizar los elementos mediante un sistema de cuadrícula adaptable.
+
+Los enlaces de reserva se construyeron utilizando la etiqueta <a> sin clases específicas de botón de Bootstrap:
+
+<a href="../paginas/reservas.html">
+    Reservar bicicleta
+</a>
+
+En el prototipo de Rueda Nocturna construí el enlace «Inscríbete» utilizando clases de utilidad para controlar directamente su apariencia.
+<a href="#inscripcion"
+   class="rounded-full bg-orange-500 px-8 py-4 text-lg font-bold text-white shadow-lg hover:bg-orange-600">
+    Inscríbete →
+</a>
+Con estas clases definí el color de fondo, el espaciado, la tipografía, los bordes redondeados, la sombra y el efecto al pasar el cursor.
+
+La diferencia principal es que Bootstrap ofrece estilos y componentes preparados, mientras que Tailwind permite definir con mayor precisión cada característica visual mediante sus utilidades.
