@@ -319,3 +319,37 @@ En el prototipo de Rueda Nocturna construí el enlace «Inscríbete» utilizando
 Con estas clases definí el color de fondo, el espaciado, la tipografía, los bordes redondeados, la sombra y el efecto al pasar el cursor.
 
 La diferencia principal es que Bootstrap ofrece estilos y componentes preparados, mientras que Tailwind permite definir con mayor precisión cada característica visual mediante sus utilidades.
+
+
+Instalé Tailwind CSS y su CLI mediante npm. Creé el archivo src/input.css con la instrucción @import "tailwindcss"; y configuré .gitignore para excluir node_modules/.
+
+Ejecuté la CLI con la opción --watch para generar automáticamente src/output.css cuando se modifican los archivos del proyecto.
+
+
+Busqué en el archivo output.css una clase utilizada en el HTML, como bg-orange-500, y comprobé que estaba presente.
+
+Después busqué una clase que no estaba utilizando, como bg-pink-500, y comprobé que no aparecía.
+
+Esto sucede porque Tailwind analiza los archivos del proyecto, identifica las clases utilizadas y genera únicamente las utilidades necesarias. De esta manera evita generar CSS innecesario.
+
+Busqué en el archivo output.css una clase utilizada en el HTML, como bg-orange-500, y comprobé que estaba presente.
+
+Después busqué una clase que no estaba utilizando, como bg-pink-500, y comprobé que no aparecía.
+
+Esto sucede porque Tailwind analiza los archivos del proyecto, identifica las clases utilizadas y genera únicamente las utilidades necesarias. De esta manera evita generar CSS innecesario.
+
+3. Construcción del kit de botones
+
+Construí tres variantes:
+
+Principal: fondo naranja y texto blanco.
+
+Secundario: fondo verde y texto blanco.
+
+Contorno: fondo transparente, borde naranja y texto naranja.
+
+Incorporé estados hover para cambiar la apariencia al pasar el cursor y estados focus para mostrar un anillo visible cuando se navega mediante el teclado.
+
+Probé la navegación con la tecla Tab para comprobar que los enlaces recibieran el foco y mostraran un indicador visual. También utilicé Enter para activar los enlaces.
+
+Con Tailwind CLI comprendí que el CSS se genera a partir de las clases detectadas en los archivos del proyecto. También aprendí a construir variantes de un mismo componente mediante utilidades, sin necesidad de crear reglas CSS personalizadas.
